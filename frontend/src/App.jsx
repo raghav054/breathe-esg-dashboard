@@ -256,11 +256,21 @@ function App() {
 
     } catch (error) {
 
-      setLoading(false);
+        setLoading(false);
 
-      console.log(error);
+        console.log(error);
 
-      toast.error("Upload failed");
+        if (error.response?.data?.company) {
+
+          toast.error(
+            "No company available. Please create a company in Django Admin before uploading CSV."
+          );
+
+        } else {
+
+          toast.error("Upload failed");
+
+        }
 
     }
 
