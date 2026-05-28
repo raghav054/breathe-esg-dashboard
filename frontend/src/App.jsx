@@ -260,17 +260,9 @@ function App() {
 
         console.log(error);
 
-        if (error.response?.data?.company) {
-
-          toast.error(
-            "No company available. Please create a company in Django Admin before uploading CSV."
-          );
-
-        } else {
-
-          toast.error("Upload failed");
-
-        }
+        toast.error(
+          "No company available. Please create a company in Django Admin before uploading CSV."
+        );
 
     }
 
