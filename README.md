@@ -39,4 +39,4 @@ Deployed on Render
 
 ## Sample Data
 
-Sample CSV files used for testing are available inside the `sample_data` folder.
+Sample CSV files used for testing are available inside the `backend/sample_data` folder.
