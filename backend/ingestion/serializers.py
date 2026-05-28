@@ -7,6 +7,9 @@ class DataSourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = DataSource
         fields = '__all__'
+        extra_kwargs = {
+            'company': {'required': False}
+        }
 
     def create(self, validated_data):
 
