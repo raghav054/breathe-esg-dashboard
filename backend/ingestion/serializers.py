@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import DataSource
-from emissions.models import Company
-
+from companies.models import Company
 
 class DataSourceSerializer(serializers.ModelSerializer):
 
@@ -10,9 +9,13 @@ class DataSourceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
+
         company, created = Company.objects.get_or_create(
-            id=1,
-            defaults={"name": "Breathe ESG"}
+            name="Tata Steel",
+            defaults={
+                "industry": "Steel",
+                "country": "India"
+            }
         )
 
         validated_data['company'] = company
