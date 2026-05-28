@@ -1,24 +1,18 @@
 from rest_framework import serializers
 from .models import DataSource
-from companies.models import Company
+from emissions.models import Company
+
 
 class DataSourceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DataSource
         fields = '__all__'
-        extra_kwargs = {
-            'company': {'required': False}
-        }
 
     def create(self, validated_data):
-
         company, created = Company.objects.get_or_create(
-            name="Tata Steel",
-            defaults={
-                "industry": "Steel",
-                "country": "India"
-            }
+            id=1,
+            defaults={"name": "Breathe ESG"}
         )
 
         validated_data['company'] = company
