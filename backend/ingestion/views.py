@@ -1,0 +1,31 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from .serializers import DataSourceSerializer
+from .utils import process_csv_upload
+
+
+class DataUploadView(APIView):
+
+    def post(self, request):
+
+        serializer = DataSourceSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            data_source = serializer.save()
+
+            process_csv_upload(data_source)
+
+            return Response(
+                {
+                    'message': 'File uploaded and processed successfully'
+                },
+                status=status.HTTP_201_CREATED
+            )
+
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
